@@ -1,0 +1,16 @@
+Quais os valores de: func(3), func(5) e func(7)?
+
+func(3) -> func(func(2)) + func(1);
+func(3) -> func(2) + 1
+func(3) -> 2 + 1
+func(3) -> 3
+
+func(4) -> func(func(3)) + func(2)
+func(4) -> func(3) + 2
+func(4) -> 3 + 2
+func(4) -> 5
+
+func(5) -> func(func(4)) + func(3);
+func(5) -> func(5) + 5;
+
+.: Como func(5) necessita do mesmo, a funcao "func" entra em loop quando n >= 5;
