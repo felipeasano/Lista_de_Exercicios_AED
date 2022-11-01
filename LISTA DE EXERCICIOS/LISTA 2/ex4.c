@@ -27,7 +27,6 @@ Lista* inserir_cabeca(Lista* l, int info){
     aux->prox = l;
     l->ant = aux;
     return aux; 
-    return l;
 }
 
 Lista* inserir_cauda(Lista* l, int info){
@@ -39,6 +38,8 @@ Lista* inserir_cauda(Lista* l, int info){
         return l;
     }
     l->prox = inserir_cauda(l->prox, info);
+    l->prox->ant = l;
+    return l;
 }
 
 void imprimir(Lista* l){
@@ -48,31 +49,29 @@ void imprimir(Lista* l){
     }
 }
 
-Lista* remover_aux(Lista* l, int info){
-    if(l->prox->info == info && l->prox->prox == NULL){
-        Lista* aux = l->prox;
-        l->prox = NULL;
-        free(aux);
-        return l;
-    }
-    if(l->prox->info == info){
-        Lista* aux = l->prox;
-        l->prox = l->prox->prox;
-        l->prox->prox->ant = l;
-        free(aux);
-        l = remover_aux(l, info);
-    }else l->prox = remover_aux(l->prox, info);
-    return l;
-}
 
 Lista* remover(Lista* l, int info){
-    if(l->info == info){
-        Lista* aux = l;
+    if(vazia(l)) return NULL;
+    Lista* rem = l;
+
+    if(rem->info == info){
         l = l->prox;
         l->ant = NULL;
-        free(aux);
-    }else{
-        l = remover_aux(l, info);
+        free(rem);
+        return l;
+    }
+
+    while(rem && rem->info != info){
+        rem = rem->prox;
+    }
+
+    if(rem != NULL){
+        Lista* aux = rem->ant;
+        aux->prox = rem->prox;
+        if(rem->prox != NULL){
+            rem->prox->ant = aux;
+        }
+        free(rem);
     }
     return l;
 }
@@ -85,7 +84,6 @@ int main(){
     l = inserir_cauda(l, 30);
     l = inserir_cauda(l, 30);
     l = inserir_cauda(l, 50);
-
 
     imprimir(l);
     l = remover(l, 30);
