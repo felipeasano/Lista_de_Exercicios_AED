@@ -2,15 +2,20 @@
 #include<stdlib.h>
 #include<string.h>
 
+// estrutura para NO da pilha
 typedef struct no{
     float numero;
     struct no* prox;
 }PILHA;
 
+// verifica se pilha eh vazia
+// retorna 1 se for vazia, 0 caso contrario
 int vazia(PILHA *p){
     return (p == NULL);
 }
 
+// verifica se um caracter eh um numero
+// retorna 1 se for numero, 0 caso contrario
 int eh_numero(char c){
     int i;
     char temp = '0';
@@ -23,6 +28,8 @@ int eh_numero(char c){
     return 0;
 }
 
+// verifica se um caractere de entrada eh um operado
+// retorna 1 caso verdadeiro, 0 caso contrario
 int eh_operador(char c){
     if(c == '+' || c == '-' || c == '*' || c == '/'){
         return 1;
@@ -30,6 +37,9 @@ int eh_operador(char c){
     return 0;
 }
 
+// realiza uma operacao matematica de acordo com o caractere passado
+// '+' = soma, '-' = subtracao, '*' = multiplicacao, '/' = divisao
+// retorna o resultado a operacao
 float operacao(float x, float y, char operador){
     if(operador == '+') return x + y;
     if(operador == '-') return x - y;
@@ -37,6 +47,8 @@ float operacao(float x, float y, char operador){
     if(operador == '/') return x / y;
 }
 
+// empilha um novo no contendo o ponto flutuante passado como parametro
+// retorna a nova cabeca da pilha
 PILHA* empilha(PILHA *p, float n){
     PILHA* nova = (PILHA*)malloc(sizeof(PILHA));
     nova->prox = p;
@@ -44,6 +56,8 @@ PILHA* empilha(PILHA *p, float n){
     return nova;
 }
 
+// desempilha o ultimo no inserido na pilha
+// retorna a nova cabeca da pilha
 PILHA* desempilha(PILHA* p){
     PILHA* nova = p;
     p = p->prox;
@@ -51,6 +65,8 @@ PILHA* desempilha(PILHA* p){
     return p;
 }
 
+// imprime o conteudo da pilha
+// retorno = nenhum
 void imprime_pilha(PILHA* p){
     if(!vazia(p)) {
         printf("%.2f->", p->numero);
