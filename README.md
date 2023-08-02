@@ -1,2 +1,8 @@
 # Algoritmos-e-Estruturas-de-Dados
-Conteúdo relacionado a Logica de Algoritmos e Estruturas de Dados (Linguagem C).
+
+Exercicio dos seguintes assunto:
+
+1. Recursividade
+2. Lista
+3. Pilha
+4. Fila
