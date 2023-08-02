@@ -1,4 +1,4 @@
-# Algoritmos-e-Estruturas-de-Dados
+# Lista de Exercicios AED
 
 Exercicio dos seguintes assunto:
 
